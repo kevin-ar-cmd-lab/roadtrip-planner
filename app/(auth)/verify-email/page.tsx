@@ -1,6 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 export default function VerifyEmailPage() {
+  const [resending, setResending] = useState(false);
+  const [resent, setResent] = useState(false);
+
+  async function handleResend() {
+    setResending(true);
+    const supabase = createClient();
+    await supabase.auth.resend({
+      type: "signup",
+      email: "", // User would need to provide email again
+    });
+    setResent(true);
+    setResending(false);
+  }
+
   return (
     <div className="w-full max-w-md">
       <div className="rounded-2xl border border-border bg-card p-8 shadow-sm text-center">
@@ -17,7 +35,13 @@ export default function VerifyEmailPage() {
         <div className="mt-8 rounded-lg border border-border bg-muted/50 p-4">
           <p className="text-sm text-muted-foreground">
             Didn&apos;t receive the email? Check your spam folder or{" "}
-            <button className="font-medium text-primary hover:text-primary-dark">click here to resend</button>.
+            <button
+              onClick={handleResend}
+              disabled={resending || resent}
+              className="font-medium text-primary hover:text-primary-dark disabled:opacity-50"
+            >
+              {resent ? "Email resent!" : resending ? "Resending..." : "click here to resend"}
+            </button>.
           </p>
         </div>
 
