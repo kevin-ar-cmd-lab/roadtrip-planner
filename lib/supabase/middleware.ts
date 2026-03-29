@@ -2,6 +2,18 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 export async function updateSession(request: NextRequest) {
+  // Intercept auth error params on the root URL and redirect to /login
+  // This handles Supabase redirects with error params (e.g. otp_expired)
+  if (request.nextUrl.pathname === "/") {
+    const errorCode = request.nextUrl.searchParams.get("error_code");
+    const error = request.nextUrl.searchParams.get("error");
+    if (error || errorCode) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      return NextResponse.redirect(url);
+    }
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   });
