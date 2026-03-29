@@ -2,15 +2,36 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { getSiteUrl } from "@/lib/utils/site-url";
 
+const URL_ERRORS: Record<string, string> = {
+  auth_callback_error: "Something went wrong during sign-in. Please try again.",
+  auth_confirm_error: "The verification link is invalid or has expired. Please request a new one.",
+  access_denied: "The email link is invalid or has expired. Please request a new one.",
+};
+
+const OTP_EXPIRED_CODES = new Set(["otp_expired"]);
+
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const urlError = searchParams.get("error");
+  const urlErrorCode = searchParams.get("error_code");
+  const urlMessage = searchParams.get("message");
+  const isExpiredLink = urlErrorCode ? OTP_EXPIRED_CODES.has(urlErrorCode) : false;
+  const [error, setError] = useState(() => {
+    if (urlErrorCode && OTP_EXPIRED_CODES.has(urlErrorCode)) {
+      return "The email link has expired. Please request a new one below.";
+    }
+    if (urlError) {
+      return URL_ERRORS[urlError] ?? "An error occurred. Please try again.";
+    }
+    return "";
+  });
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -50,9 +71,22 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold text-foreground">Welcome back</h1>
         <p className="mt-2 text-sm text-muted-foreground">Sign in to your account to continue planning.</p>
 
+        {urlMessage === "password_updated" && (
+          <div className="mt-4 rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700">
+            Your password has been updated. Please sign in with your new password.
+          </div>
+        )}
+
         {error && (
           <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
             {error}
+            {isExpiredLink && (
+              <div className="mt-2">
+                <Link href="/forgot-password" className="font-medium text-primary hover:text-primary-dark underline">
+                  Request a new password reset link
+                </Link>
+              </div>
+            )}
           </div>
         )}
 

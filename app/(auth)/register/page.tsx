@@ -33,7 +33,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -48,6 +48,16 @@ export default function RegisterPage() {
 
     if (error) {
       setError(error.message);
+      setLoading(false);
+      return;
+    }
+
+    // Supabase returns a user with an empty identities array when the email
+    // is already registered. In that case no confirmation email is sent.
+    if (data?.user?.identities?.length === 0) {
+      setError(
+        "An account with this email already exists. Please sign in or use a different email."
+      );
       setLoading(false);
       return;
     }
