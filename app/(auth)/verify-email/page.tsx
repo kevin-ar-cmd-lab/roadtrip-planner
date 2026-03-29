@@ -2,20 +2,33 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function VerifyEmailPage() {
+  const searchParams = useSearchParams();
+  const email = searchParams.get("email") ?? "";
   const [resending, setResending] = useState(false);
   const [resent, setResent] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleResend() {
+    if (!email) {
+      setError("No email address available. Please register again.");
+      return;
+    }
     setResending(true);
+    setError("");
     const supabase = createClient();
-    await supabase.auth.resend({
+    const { error: resendError } = await supabase.auth.resend({
       type: "signup",
-      email: "", // User would need to provide email again
+      email,
     });
-    setResent(true);
+    if (resendError) {
+      setError(resendError.message);
+    } else {
+      setResent(true);
+    }
     setResending(false);
   }
 
@@ -29,8 +42,20 @@ export default function VerifyEmailPage() {
         </div>
         <h1 className="mt-6 text-2xl font-bold text-foreground">Check your email</h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          We&apos;ve sent a verification link to your email address. Click the link in the email to verify your account.
+          We&apos;ve sent a verification link to{" "}
+          {email ? (
+            <span className="font-medium text-foreground">{email}</span>
+          ) : (
+            "your email address"
+          )}
+          . Click the link in the email to verify your account.
         </p>
+
+        {error && (
+          <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
 
         <div className="mt-8 rounded-lg border border-border bg-muted/50 p-4">
           <p className="text-sm text-muted-foreground">

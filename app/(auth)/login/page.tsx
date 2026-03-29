@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getSiteUrl } from "@/lib/utils/site-url";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function LoginPage() {
     await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
+        redirectTo: `${getSiteUrl()}/auth/callback`,
       },
     });
   }

@@ -1,9 +1,43 @@
 "use client";
 
 import { useState } from "react";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    const supabase = createClient();
+    const { error: insertError } = await supabase
+      .from("contact_messages")
+      .insert({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        subject,
+        message,
+      });
+
+    if (insertError) {
+      setError("Something went wrong. Please try again later.");
+      setLoading(false);
+      return;
+    }
+
+    setSubmitted(true);
+    setLoading(false);
+  }
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -23,12 +57,14 @@ export default function ContactPage() {
           </div>
         ) : (
           <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSubmitted(true);
-            }}
+            onSubmit={handleSubmit}
             className="mt-12 space-y-6"
           >
+            {error && (
+              <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                {error}
+              </div>
+            )}
             <div className="grid gap-6 sm:grid-cols-2">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-foreground">First name</label>
@@ -36,6 +72,8 @@ export default function ContactPage() {
                   id="firstName"
                   type="text"
                   required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="mt-2 block w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="Jane"
                 />
@@ -46,6 +84,8 @@ export default function ContactPage() {
                   id="lastName"
                   type="text"
                   required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="mt-2 block w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   placeholder="Doe"
                 />
@@ -57,6 +97,8 @@ export default function ContactPage() {
                 id="email"
                 type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="mt-2 block w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 placeholder="jane@example.com"
               />
@@ -67,6 +109,8 @@ export default function ContactPage() {
                 id="subject"
                 type="text"
                 required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
                 className="mt-2 block w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 placeholder="How can we help?"
               />
@@ -77,15 +121,18 @@ export default function ContactPage() {
                 id="message"
                 rows={5}
                 required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 className="mt-2 block w-full rounded-lg border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 placeholder="Tell us more..."
               />
             </div>
             <button
               type="submit"
-              className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:w-auto"
+              disabled={loading}
+              className="w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-dark disabled:opacity-50 sm:w-auto"
             >
-              Send Message
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
         )}
