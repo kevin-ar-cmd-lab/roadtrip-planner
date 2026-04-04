@@ -10,22 +10,22 @@ const projects = [
 export default function ProjectsPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Projects</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Organize your trips into projects for easy management.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Projects</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Organize your trips into projects for easy management.</p>
         </div>
-        <button className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark">
+        <button className="self-start rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:self-auto">
           New Project
         </button>
       </div>
 
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {projects.map((project) => (
           <Link
             key={project.id}
             href={`/projects/${project.id}`}
-            className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md"
+            className="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md sm:p-6"
           >
             <div className="flex items-start justify-between">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
@@ -48,7 +48,7 @@ export default function ProjectsPage() {
         ))}
 
         {/* New Project Card */}
-        <button className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-border p-6 text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary">
+        <button className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-border p-4 text-muted-foreground transition-colors hover:border-primary/30 hover:text-primary sm:p-6">
           <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
           </svg>

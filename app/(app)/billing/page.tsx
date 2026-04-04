@@ -3,18 +3,18 @@ import Link from "next/link";
 export default function BillingPage() {
   return (
     <>
-      <h1 className="text-2xl font-bold text-foreground">Billing</h1>
-      <p className="mt-1 text-sm text-muted-foreground">Manage your subscription and payment methods.</p>
+      <h1 className="text-xl font-bold text-foreground sm:text-2xl">Billing</h1>
+      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Manage your subscription and payment methods.</p>
 
       {/* Current Plan */}
-      <div className="mt-8 rounded-xl border border-primary/30 bg-primary/5 p-6">
-        <div className="flex items-center justify-between">
+      <div className="mt-8 rounded-xl border border-primary/30 bg-primary/5 p-4 sm:p-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="flex items-center gap-2">
-              <h2 className="text-lg font-semibold text-foreground">Pro Plan</h2>
+              <h2 className="text-base font-semibold text-foreground sm:text-lg">Pro Plan</h2>
               <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">Active</span>
             </div>
-            <p className="mt-1 text-sm text-muted-foreground">$9/month &middot; Renews on March 15, 2026</p>
+            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">$9/month &middot; Renews on March 15, 2026</p>
           </div>
           <div className="flex gap-3">
             <Link href="/pricing" className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted">
@@ -27,11 +27,11 @@ export default function BillingPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:gap-8 lg:grid-cols-2">
         {/* Payment Method */}
-        <div className="rounded-xl border border-border bg-card p-6">
+        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground">Payment Method</h2>
+            <h2 className="text-base font-semibold text-foreground sm:text-lg">Payment Method</h2>
             <button className="text-sm font-medium text-primary hover:text-primary-dark">Update</button>
           </div>
           <div className="mt-4 flex items-center gap-4 rounded-lg border border-border p-4">
@@ -46,8 +46,8 @@ export default function BillingPage() {
         </div>
 
         {/* Usage */}
-        <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="text-lg font-semibold text-foreground">Usage This Month</h2>
+        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+          <h2 className="text-base font-semibold text-foreground sm:text-lg">Usage This Month</h2>
           <div className="mt-4 space-y-4">
             {[
               { label: "Trips created", used: 8, limit: "Unlimited" },
@@ -72,9 +72,9 @@ export default function BillingPage() {
 
       {/* Billing History */}
       <div className="mt-8">
-        <h2 className="text-lg font-semibold text-foreground">Billing History</h2>
-        <div className="mt-4 overflow-hidden rounded-xl border border-border">
-          <table className="w-full">
+        <h2 className="text-base font-semibold text-foreground sm:text-lg">Billing History</h2>
+        <div className="mt-4 overflow-x-auto rounded-xl border border-border">
+          <table className="min-w-[480px] w-full">
             <thead className="bg-muted/50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Date</th>

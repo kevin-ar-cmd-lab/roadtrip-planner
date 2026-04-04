@@ -12,14 +12,14 @@ const trips = [
 export default function TripsPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">My Trips</h1>
-          <p className="mt-1 text-sm text-muted-foreground">View and manage all your road trips.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">My Trips</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">View and manage all your road trips.</p>
         </div>
         <Link
           href="/planner"
-          className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+          className="self-start rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:self-auto"
         >
           Plan New Trip
         </Link>
@@ -40,7 +40,7 @@ export default function TripsPage() {
       </div>
 
       {/* Trip Cards */}
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {trips.map((trip) => (
           <Link
             key={trip.id}

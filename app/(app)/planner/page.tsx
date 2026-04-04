@@ -3,10 +3,10 @@
 export default function PlannerPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Trip Planner</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Plan your route, add stops, and organize your itinerary.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Trip Planner</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Plan your route, add stops, and organize your itinerary.</p>
         </div>
         <div className="flex gap-3">
           <button className="rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted">
@@ -18,7 +18,7 @@ export default function PlannerPage() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+      <div className="mt-8 grid gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Stops Panel */}
         <div className="space-y-4 lg:col-span-1">
           <div className="rounded-xl border border-border bg-card p-4">

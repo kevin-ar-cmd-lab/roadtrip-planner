@@ -20,30 +20,30 @@ export default function AnalyticsPage() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold text-foreground">Analytics</h1>
-      <p className="mt-1 text-sm text-muted-foreground">Track your travel patterns and statistics.</p>
+      <h1 className="text-xl font-bold text-foreground sm:text-2xl">Analytics</h1>
+      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Track your travel patterns and statistics.</p>
 
       {/* Overview Stats */}
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
         {[
           { label: "Total Distance", value: "12,450 mi", sub: "All time" },
           { label: "Trips This Year", value: "8", sub: "2026" },
           { label: "Average Trip Length", value: "536 mi", sub: "Per trip" },
           { label: "States Visited", value: "14", sub: "Out of 50" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-card p-6">
-            <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
-            <p className="mt-2 text-3xl font-bold text-foreground">{stat.value}</p>
+          <div key={stat.label} className="rounded-xl border border-border bg-card p-4 sm:p-6">
+            <p className="text-xs font-medium text-muted-foreground sm:text-sm">{stat.label}</p>
+            <p className="mt-2 text-xl font-bold text-foreground sm:text-3xl">{stat.value}</p>
             <p className="mt-1 text-xs text-muted-foreground">{stat.sub}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:gap-8 lg:grid-cols-2">
         {/* Monthly Activity Chart */}
-        <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="text-lg font-semibold text-foreground">Monthly Mileage</h2>
-          <p className="text-sm text-muted-foreground">Miles driven per month over the last 6 months.</p>
+        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+          <h2 className="text-base font-semibold text-foreground sm:text-lg">Monthly Mileage</h2>
+          <p className="text-xs text-muted-foreground sm:text-sm">Miles driven per month over the last 6 months.</p>
           <div className="mt-6 flex items-end gap-3" style={{ height: 200 }}>
             {monthlyData.map((data) => (
               <div key={data.month} className="flex flex-1 flex-col items-center gap-2">
@@ -59,9 +59,9 @@ export default function AnalyticsPage() {
         </div>
 
         {/* Top Destinations */}
-        <div className="rounded-xl border border-border bg-card p-6">
-          <h2 className="text-lg font-semibold text-foreground">Top Destinations</h2>
-          <p className="text-sm text-muted-foreground">Most visited states by number of trips.</p>
+        <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+          <h2 className="text-base font-semibold text-foreground sm:text-lg">Top Destinations</h2>
+          <p className="text-xs text-muted-foreground sm:text-sm">Most visited states by number of trips.</p>
           <div className="mt-6 space-y-4">
             {topDestinations.map((dest, i) => (
               <div key={dest.name} className="flex items-center gap-4">

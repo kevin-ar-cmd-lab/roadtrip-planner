@@ -3,10 +3,10 @@
 export default function MapPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Explore Map</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Discover routes, points of interest, and plan visually.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Explore Map</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Discover routes, points of interest, and plan visually.</p>
         </div>
         <div className="flex gap-3">
           <select className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none">
@@ -23,7 +23,7 @@ export default function MapPage() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-4">
+      <div className="mt-6 grid gap-4 sm:gap-6 lg:grid-cols-4">
         {/* Sidebar */}
         <div className="space-y-4 lg:col-span-1">
           <div className="rounded-xl border border-border bg-card p-4">

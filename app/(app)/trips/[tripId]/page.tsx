@@ -20,10 +20,10 @@ export default function TripDetailPage({ params }: { params: Promise<{ tripId: s
         <span className="text-foreground">Pacific Coast Highway</span>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Pacific Coast Highway</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Mar 5-12, 2026 &middot; 8 stops &middot; 650 miles</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Pacific Coast Highway</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Mar 5-12, 2026 &middot; 8 stops &middot; 650 miles</p>
         </div>
         <div className="flex gap-3">
           <button className="rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted">
@@ -36,15 +36,15 @@ export default function TripDetailPage({ params }: { params: Promise<{ tripId: s
       </div>
 
       {/* Trip Stats */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-4">
+      <div className="mt-8 grid gap-3 sm:grid-cols-4 sm:gap-4">
         {[
           { label: "Distance", value: "650 mi" },
           { label: "Drive Time", value: "12h 30m" },
           { label: "Stops", value: "8" },
           { label: "Duration", value: "3 days" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-card p-4 text-center">
-            <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+          <div key={stat.label} className="rounded-xl border border-border bg-card p-3 text-center sm:p-4">
+            <p className="text-xl font-bold text-foreground sm:text-2xl">{stat.value}</p>
             <p className="text-xs text-muted-foreground">{stat.label}</p>
           </div>
         ))}
@@ -52,7 +52,7 @@ export default function TripDetailPage({ params }: { params: Promise<{ tripId: s
 
       {/* Itinerary */}
       <div className="mt-8">
-        <h2 className="text-lg font-semibold text-foreground">Itinerary</h2>
+        <h2 className="text-base font-semibold text-foreground sm:text-lg">Itinerary</h2>
         <div className="mt-4 space-y-3">
           {stops.map((stop, i) => (
             <div key={stop.num} className="relative flex gap-4">
@@ -67,7 +67,7 @@ export default function TripDetailPage({ params }: { params: Promise<{ tripId: s
               </div>
 
               {/* Stop Card */}
-              <div className="mb-3 flex-1 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/20">
+              <div className="mb-3 flex-1 rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/20 sm:p-5">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-semibold text-foreground">{stop.name}</h3>
