@@ -42,7 +42,7 @@ export default function RegisterPage() {
           last_name: lastName,
           full_name: `${firstName} ${lastName}`,
         },
-        emailRedirectTo: `${getSiteUrl()}/auth/callback`,
+        emailRedirectTo: `${getSiteUrl()}/auth/callback?next=/email-confirmed`,
       },
     });
 
