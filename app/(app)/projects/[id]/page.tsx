@@ -16,10 +16,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
         <span className="text-foreground">Summer 2026 Adventures</span>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Summer 2026 Adventures</h1>
-          <p className="mt-1 text-sm text-muted-foreground">4 trips planned across California and the West Coast.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Summer 2026 Adventures</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">4 trips planned across California and the West Coast.</p>
         </div>
         <div className="flex gap-3">
           <button className="rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted">
@@ -32,15 +32,15 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
       </div>
 
       {/* Project Stats */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-4">
+      <div className="mt-8 grid gap-3 sm:grid-cols-4 sm:gap-4">
         {[
           { label: "Total Trips", value: "4" },
           { label: "Total Stops", value: "23" },
           { label: "Total Miles", value: "1,390" },
           { label: "Collaborators", value: "3" },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-card p-4 text-center">
-            <p className="text-2xl font-bold text-foreground">{stat.value}</p>
+          <div key={stat.label} className="rounded-xl border border-border bg-card p-3 text-center sm:p-4">
+            <p className="text-xl font-bold text-foreground sm:text-2xl">{stat.value}</p>
             <p className="text-xs text-muted-foreground">{stat.label}</p>
           </div>
         ))}
@@ -48,13 +48,13 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
       {/* Trip List */}
       <div className="mt-8">
-        <h2 className="text-lg font-semibold text-foreground">Trips</h2>
+        <h2 className="text-base font-semibold text-foreground sm:text-lg">Trips</h2>
         <div className="mt-4 space-y-3">
           {projectTrips.map((trip) => (
             <Link
               key={trip.id}
               href={`/trips/${trip.id}`}
-              className="flex items-center justify-between rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-sm"
+              className="flex items-center justify-between rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-sm sm:p-5"
             >
               <div className="flex items-center gap-4">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">

@@ -14,12 +14,12 @@ const categories = ["All", "Scenic Viewpoint", "Nature", "Scenic Route", "Attrac
 export default function SavedLocationsPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Saved Locations</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Your personal library of bookmarked places and points of interest.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Saved Locations</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Your personal library of bookmarked places and points of interest.</p>
         </div>
-        <button className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark">
+        <button className="self-start rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:self-auto">
           Add Location
         </button>
       </div>
@@ -39,11 +39,11 @@ export default function SavedLocationsPage() {
       </div>
 
       {/* Location Cards */}
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {savedLocations.map((location) => (
           <div
             key={location.id}
-            className="group rounded-xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-md"
+            className="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md sm:p-5"
           >
             <div className="flex items-start justify-between">
               <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">

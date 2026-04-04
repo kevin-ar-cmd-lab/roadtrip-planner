@@ -52,12 +52,12 @@ const typeIcons: Record<string, string> = {
 export default function NotificationsPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Notifications</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Stay up to date with your trip activity.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Notifications</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Stay up to date with your trip activity.</p>
         </div>
-        <button className="text-sm font-medium text-primary hover:text-primary-dark">
+        <button className="self-start text-sm font-medium text-primary hover:text-primary-dark sm:self-auto">
           Mark all as read
         </button>
       </div>
@@ -66,7 +66,7 @@ export default function NotificationsPage() {
         {notifications.map((notification) => (
           <div
             key={notification.id}
-            className={`flex gap-4 rounded-xl border p-5 transition-colors ${
+            className={`flex gap-3 rounded-xl border p-4 transition-colors sm:gap-4 sm:p-5 ${
               notification.read
                 ? "border-border bg-card"
                 : "border-primary/20 bg-primary/5"

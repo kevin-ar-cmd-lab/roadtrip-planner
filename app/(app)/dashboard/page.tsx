@@ -16,43 +16,43 @@ const recentTrips = [
 export default function DashboardPage() {
   return (
     <>
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Dashboard</h1>
-          <p className="mt-1 text-sm text-muted-foreground">Welcome back! Here&apos;s an overview of your trips.</p>
+          <h1 className="text-xl font-bold text-foreground sm:text-2xl">Dashboard</h1>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Welcome back! Here&apos;s an overview of your trips.</p>
         </div>
         <Link
           href="/planner"
-          className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+          className="w-fit rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-white transition-colors hover:bg-primary-dark sm:px-4 sm:py-2.5 sm:text-sm"
         >
           Plan New Trip
         </Link>
       </div>
 
       {/* Stats Grid */}
-      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-6 lg:grid-cols-4">
         {stats.map((stat) => (
-          <div key={stat.label} className="rounded-xl border border-border bg-card p-6">
+          <div key={stat.label} className="rounded-xl border border-border bg-card p-4 sm:p-6">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
-              <svg className="h-5 w-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <p className="text-xs font-medium text-muted-foreground sm:text-sm">{stat.label}</p>
+              <svg className="hidden h-5 w-5 text-muted-foreground sm:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d={stat.icon} />
               </svg>
             </div>
-            <p className="mt-2 text-3xl font-bold text-foreground">{stat.value}</p>
+            <p className="mt-1 text-xl font-bold text-foreground sm:mt-2 sm:text-3xl">{stat.value}</p>
             <p className="mt-1 text-xs text-muted-foreground">{stat.change}</p>
           </div>
         ))}
       </div>
 
       {/* Recent Trips */}
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-foreground">Recent Trips</h2>
-          <Link href="/trips" className="text-sm font-medium text-primary hover:text-primary-dark">View all</Link>
+          <h2 className="text-base font-semibold text-foreground sm:text-lg">Recent Trips</h2>
+          <Link href="/trips" className="text-xs font-medium text-primary hover:text-primary-dark sm:text-sm">View all</Link>
         </div>
-        <div className="mt-4 overflow-hidden rounded-xl border border-border">
-          <table className="w-full">
+        <div className="mt-4 overflow-x-auto rounded-xl border border-border">
+          <table className="w-full min-w-[480px]">
             <thead className="bg-muted/50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-muted-foreground">Trip Name</th>
@@ -84,18 +84,18 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
-        <Link href="/planner" className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md">
-          <h3 className="font-semibold text-foreground">Plan a Trip</h3>
-          <p className="mt-1 text-sm text-muted-foreground">Create a new road trip itinerary</p>
+      <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-3 sm:gap-4">
+        <Link href="/planner" className="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md sm:p-6">
+          <h3 className="text-sm font-semibold text-foreground sm:text-base">Plan a Trip</h3>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Create a new road trip itinerary</p>
         </Link>
-        <Link href="/map" className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md">
-          <h3 className="font-semibold text-foreground">Explore Map</h3>
-          <p className="mt-1 text-sm text-muted-foreground">Discover new routes and locations</p>
+        <Link href="/map" className="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md sm:p-6">
+          <h3 className="text-sm font-semibold text-foreground sm:text-base">Explore Map</h3>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Discover new routes and locations</p>
         </Link>
-        <Link href="/saved-locations" className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-md">
-          <h3 className="font-semibold text-foreground">Saved Places</h3>
-          <p className="mt-1 text-sm text-muted-foreground">View your bookmarked locations</p>
+        <Link href="/saved-locations" className="group rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/30 hover:shadow-md sm:p-6">
+          <h3 className="text-sm font-semibold text-foreground sm:text-base">Saved Places</h3>
+          <p className="mt-1 text-xs text-muted-foreground sm:text-sm">View your bookmarked locations</p>
         </Link>
       </div>
     </>

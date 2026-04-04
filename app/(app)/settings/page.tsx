@@ -9,8 +9,8 @@ export default function SettingsPage() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold text-foreground">Settings</h1>
-      <p className="mt-1 text-sm text-muted-foreground">Manage your account settings and preferences.</p>
+      <h1 className="text-xl font-bold text-foreground sm:text-2xl">Settings</h1>
+      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Manage your account settings and preferences.</p>
 
       <div className="mt-8">
         <div className="flex gap-1 border-b border-border">
@@ -32,8 +32,8 @@ export default function SettingsPage() {
         <div className="mt-8">
           {activeTab === "General" && (
             <div className="space-y-8">
-              <div className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-lg font-semibold text-foreground">Display</h3>
+              <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+                <h3 className="text-base font-semibold text-foreground sm:text-lg">Display</h3>
                 <div className="mt-4 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -71,8 +71,8 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="rounded-xl border border-border bg-card p-6">
-                <h3 className="text-lg font-semibold text-foreground">Account</h3>
+              <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+                <h3 className="text-base font-semibold text-foreground sm:text-lg">Account</h3>
                 <div className="mt-4 space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -95,8 +95,8 @@ export default function SettingsPage() {
                 </div>
               </div>
 
-              <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-6">
-                <h3 className="text-lg font-semibold text-destructive">Danger Zone</h3>
+              <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 sm:p-6">
+                <h3 className="text-base font-semibold text-destructive sm:text-lg">Danger Zone</h3>
                 <p className="mt-2 text-sm text-muted-foreground">Permanently delete your account and all data.</p>
                 <button className="mt-4 rounded-lg bg-destructive px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-destructive/90">
                   Delete account
@@ -106,8 +106,8 @@ export default function SettingsPage() {
           )}
 
           {activeTab === "Notifications" && (
-            <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="text-lg font-semibold text-foreground">Notification Preferences</h3>
+            <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+              <h3 className="text-base font-semibold text-foreground sm:text-lg">Notification Preferences</h3>
               <div className="mt-4 space-y-4">
                 {[
                   { label: "Trip reminders", desc: "Get notified before upcoming trips." },
@@ -131,8 +131,8 @@ export default function SettingsPage() {
           )}
 
           {activeTab === "Privacy" && (
-            <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="text-lg font-semibold text-foreground">Privacy Settings</h3>
+            <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+              <h3 className="text-base font-semibold text-foreground sm:text-lg">Privacy Settings</h3>
               <div className="mt-4 space-y-4">
                 {[
                   { label: "Public profile", desc: "Allow others to see your profile." },
@@ -155,8 +155,8 @@ export default function SettingsPage() {
           )}
 
           {activeTab === "Integrations" && (
-            <div className="rounded-xl border border-border bg-card p-6">
-              <h3 className="text-lg font-semibold text-foreground">Connected Services</h3>
+            <div className="rounded-xl border border-border bg-card p-4 sm:p-6">
+              <h3 className="text-base font-semibold text-foreground sm:text-lg">Connected Services</h3>
               <div className="mt-4 space-y-4">
                 {[
                   { name: "Google Maps", status: "Connected", connected: true },
